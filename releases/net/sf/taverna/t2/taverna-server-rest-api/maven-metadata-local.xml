@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>net.sf.taverna.t2</groupId>
+  <artifactId>taverna-server-rest-api</artifactId>
+  <version>0.2.0</version>
+  <versioning>
+    <versions>
+      <version>0.2.0</version>
+    </versions>
+    <lastUpdated>20130718211841</lastUpdated>
+  </versioning>
+</metadata>
