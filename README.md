@@ -8,7 +8,7 @@ To use add:
 ```xml
   <repositories>
   	<repository>
-		<id>repo</id>
+		<id>impact</id>
 		<url>https://github.com/impactcentre/m2-repo/raw/master/releases</url>
 	</repository>
   </repositories>
