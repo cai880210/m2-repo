@@ -1,0 +1,31 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <version>${version}</version>
+
+    <packaging>pom</packaging>
+
+    <name>utils</name>
+    <description>Some useful classes</description>
+    <properties>
+        <groupId>eu.digitisation</groupId>
+        <artifactId>utils</artifactId>
+        <version>0.1</version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jdk.version>1.7</jdk.version>
+    </properties>
+
+    <modules>
+        <module>text</module>
+    </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.basedir}/../releases</url>
+        </repository>
+    </distributionManagement>
+</project>

@@ -1,7 +1,7 @@
 m2-repo
 ========
 
-Simple Maven repository for eu.impact_project artifacts .
+Maven repository for eu.impact_project and eu.digitisation artifacts .
 
 To use add:
 
