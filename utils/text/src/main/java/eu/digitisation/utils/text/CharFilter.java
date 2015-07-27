@@ -17,6 +17,8 @@
  */
 package eu.digitisation.utils.text;
 
+import eu.digitisation.utils.log.Messages;
+
 import java.io.*;
 import java.nio.channels.FileChannel;
 import java.util.HashMap;
@@ -92,13 +94,16 @@ public class CharFilter extends HashMap<String, String> {
      */
     public final void addFilter(File file) {
         if (file.isDirectory()) {
-            File[] files = file.listFiles(new FilenameFilter() {
+            String[] filenames = file.list(new FilenameFilter() {
+                @Override
                 public boolean accept(File dir, String name) {
-                    return name.toLowerCase().endsWith(".csv");
+                    if (name.endsWith(".csv"))
+                        return true;
+                    return false;
                 }
             });
-            for (File f : files) {
-                addCSV(f);
+            for (String filename : filenames) {
+                addCSV(new File(filename));
             }
         } else if (file.isFile()) {
             addCSV(file);
@@ -151,7 +156,7 @@ public class CharFilter extends HashMap<String, String> {
                 }
                 reader.close();
         } catch (IOException ex) {
-            logger.info(CharFilter.class.getName() + ": " + ex);
+            Messages.info(CharFilter.class.getName() + ": " + ex);
         }
     }
     
@@ -197,7 +202,7 @@ public class CharFilter extends HashMap<String, String> {
             return java.nio.charset.Charset.forName("utf-8").newDecoder()
                     .decode(buffer);
         } catch (IOException ex) {
-            logger.info(CharFilter.class.getName() + ": " + ex);
+            Messages.info(CharFilter.class.getName() + ": " + ex);
         }
         return null;
     }
@@ -218,7 +223,7 @@ public class CharFilter extends HashMap<String, String> {
             writer.flush();
             writer.close();
         } catch (IOException ex) {
-            logger.info(CharFilter.class.getName() + ": " + ex);
+            Messages.info(CharFilter.class.getName() + ": " + ex);
         }
     }
 
@@ -238,7 +243,7 @@ public class CharFilter extends HashMap<String, String> {
             writer.flush();
             writer.close();
         } catch (IOException ex) {
-            logger.info(CharFilter.class.getName() + ": " + ex);
+            Messages.info(CharFilter.class.getName() + ": " + ex);
         }
 
     }

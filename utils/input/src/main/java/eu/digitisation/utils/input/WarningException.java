@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 Universidad de Alicante
+ * Copyright (C) 2014 Universidad  de Alicante
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -15,37 +15,20 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package eu.digitisation.utils.text;
-
-import com.ibm.icu.text.CharsetDetector;
-import java.io.*;
-import java.nio.charset.Charset;
+package eu.digitisation.utils.input;
 
 /**
- * Detect the encoding of a text file
- *
+ * Exceptions which only generate a warning and waits for user reaction
  * @author R.C.C.
  */
-public class Encoding {
+public class WarningException extends Exception {
+    private static final long serialVersionUID = 1L;
 
     /**
-     *
-     * @param file a text file
-     * @return the encoding or Charset
+     * Default constructor
+     * @param message
      */
-    public static Charset detect(File file) {
-        CharsetDetector charsetDetector = new CharsetDetector();
-
-        try {
-            InputStream is = new BufferedInputStream(new FileInputStream(file));
-
-            charsetDetector.setText(is);
-
-            return Charset.forName(charsetDetector.detect().getName());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+    public WarningException(String message) {
+        super(message);
     }
 }

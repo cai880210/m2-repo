@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 Universidad de Alicante
+ * Copyright (C) 2014 Universidad de Alicante
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -15,37 +15,30 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package eu.digitisation.utils.text;
+package eu.digitisation.utils.log;
 
-import com.ibm.icu.text.CharsetDetector;
-import java.io.*;
-import java.nio.charset.Charset;
+import java.util.logging.Formatter;
+import java.util.logging.LogRecord;
 
 /**
- * Detect the encoding of a text file
  *
  * @author R.C.C.
  */
-public class Encoding {
+public class LogFormatter extends Formatter {
 
-    /**
-     *
-     * @param file a text file
-     * @return the encoding or Charset
-     */
-    public static Charset detect(File file) {
-        CharsetDetector charsetDetector = new CharsetDetector();
+    public LogFormatter() {
+        super();
+    }
 
-        try {
-            InputStream is = new BufferedInputStream(new FileInputStream(file));
+    @Override
+    public String format(LogRecord record) {
+        StringBuilder builder = new StringBuilder();
 
-            charsetDetector.setText(is);
+        builder.append(record.getLevel().getName());
+        builder.append(" ");
+        builder.append(formatMessage(record));
+        builder.append("\n");
 
-            return Charset.forName(charsetDetector.detect().getName());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        return builder.toString();
     }
 }

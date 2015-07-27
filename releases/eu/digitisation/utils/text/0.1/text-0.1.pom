@@ -8,7 +8,7 @@
         <artifactId>utils</artifactId>
         <version>0.1</version>
     </parent>
-    
+
     <groupId>eu.digitisation.utils</groupId>
     <artifactId>text</artifactId>
     <version>0.1</version>

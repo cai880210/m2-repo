@@ -17,12 +17,13 @@
  */
 package eu.digitisation.utils.text;
 
+import eu.digitisation.utils.log.Messages;
+
 import java.io.*;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.logging.Logger;
 
 
 /**
@@ -32,7 +33,6 @@ import java.util.logging.Logger;
  * @author R.C.C.
  */
 public class CharMap {
-    private static final Logger logger = Logger.getLogger(CharMap.class.getName());
 
     /**
      * Typical Options for character comparison
@@ -108,13 +108,16 @@ public class CharMap {
      */
     public void addFilter(File file) {
         if (file.isDirectory()) {
-            File[] files = file.listFiles(new FilenameFilter() {
+            String[] filenames = file.list(new FilenameFilter() {
+                @Override
                 public boolean accept(File dir, String name) {
-                    return name.toLowerCase().endsWith(".csv");
+                    if (name.endsWith(".csv"))
+                        return true;
+                    return false;
                 }
             });
-            for (File f : files) {
-                addCSV(f);
+            for (String filename : filenames) {
+                addCSV(new File(filename));
             }
         } else if (file.isFile()) {
             addCSV(file);
@@ -143,7 +146,7 @@ public class CharMap {
             }
             reader.close();
         } catch (IOException ex) {
-            logger.info(CharFilter.class.getName() + ": " + ex);
+            Messages.info(CharFilter.class.getName() + ": " + ex);
         }
     }
 

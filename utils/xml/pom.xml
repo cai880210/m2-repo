@@ -2,8 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>eu.digitisation.utils</groupId>
-    <artifactId>text</artifactId>
-    <name>text</name>
+    <artifactId>xml</artifactId>
+    <name>xml</name>
     <version>0.2</version>
     <packaging>jar</packaging>
     <description>Some utils</description>
@@ -67,18 +67,13 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.ibm.icu</groupId>
-            <artifactId>icu4j</artifactId>
-            <version>55.1</version>
-        </dependency>
-        <dependency>
             <groupId>eu.digitisation.utils</groupId>
-            <artifactId>input</artifactId>
+            <artifactId>log</artifactId>
             <version>0.2</version>
         </dependency>
         <dependency>
             <groupId>eu.digitisation.utils</groupId>
-            <artifactId>log</artifactId>
+            <artifactId>input</artifactId>
             <version>0.2</version>
         </dependency>
     </dependencies>

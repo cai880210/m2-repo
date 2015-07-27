@@ -17,12 +17,12 @@
  */
 package eu.digitisation.utils.text;
 
+import eu.digitisation.utils.log.Messages;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Logger;
 
 
 /**
@@ -31,7 +31,7 @@ import java.util.logging.Logger;
  * @version 2012.06.20
  */
 public class UnicodeReader {
-    private static final Logger logger = Logger.getLogger(UnicodeReader.class.getName());
+
     /**
      * Transform a sequence of Unicode values (blocks of four hexadecimal
      * digits) into the string they represent. For example, "00410042" (or "0041
@@ -125,7 +125,7 @@ public class UnicodeReader {
         while (reader.ready()) {
             String line = reader.readLine();
             String[] hexcodes = toHexCodepoints(line);
-            logger.info(java.util.Arrays.toString(hexcodes));
+            System.out.println(java.util.Arrays.toString(hexcodes));
         }
         reader.close();
     }
@@ -158,7 +158,7 @@ public class UnicodeReader {
                 writer.close();
             }
         } catch (IOException ex) {
-            logger.info(CharFilter.class.getName() + ": " + ex);
+            Messages.info(CharFilter.class.getName() + ": " + ex);
         }
     }
 }
